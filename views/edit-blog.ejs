@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Edit Blog | Blogify</title>
+    <style>
+      .form-section {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .form-card {
+        border-radius: 1rem;
+        box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-5 form-section">
+      <div class="form-card bg-light">
+        <h2 class="mb-4 text-center text-primary fw-bold">Edit Blog Post</h2>
+        <form action="/blog/edit/<%= blog._id %>" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="coverImage" class="form-label">Change Cover Image (optional)</label>
+            <input
+              type="file"
+              class="form-control"
+              id="coverImage"
+              name="coverImage"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Blog Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              value="<%= blog.title %>"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="body" class="form-label">Blog Content</label>
+            <textarea
+              name="body"
+              class="form-control"
+              id="body"
+              rows="6"
+              required
+            ><%= blog.body %></textarea>
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-success btn-lg" type="submit">
+              <i class="bi bi-check-lg me-2"></i>Update Blog
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <%- include('./partials/scripts') %>
+  </body>
+</html>
